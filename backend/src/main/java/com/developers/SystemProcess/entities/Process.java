@@ -3,13 +3,15 @@ package com.developers.SystemProcess.entities;
 import com.developers.SystemProcess.enums.StatusProcess;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_process")
-public class Process {
+public class Process implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

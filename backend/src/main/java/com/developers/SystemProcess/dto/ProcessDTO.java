@@ -3,10 +3,12 @@ package com.developers.SystemProcess.dto;
 import com.developers.SystemProcess.entities.Process;
 import com.developers.SystemProcess.enums.StatusProcess;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
-public class ProcessDTO {
+public class ProcessDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private Long numberProcess;
