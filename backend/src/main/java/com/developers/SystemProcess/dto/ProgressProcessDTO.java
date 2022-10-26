@@ -1,5 +1,6 @@
 package com.developers.SystemProcess.dto;
 
+import com.developers.SystemProcess.entities.Process;
 import com.developers.SystemProcess.entities.ProgressProcess;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ public class ProgressProcessDTO implements Serializable {
     private String description;
     private Instant moment;
 
+
     public ProgressProcessDTO() {
     }
 
@@ -21,6 +23,7 @@ public class ProgressProcessDTO implements Serializable {
         this.title = title;
         this.description = description;
         this.moment = moment;
+
     }
 
     public ProgressProcessDTO(ProgressProcess entity) {
@@ -28,6 +31,7 @@ public class ProgressProcessDTO implements Serializable {
         title = entity.getTitle();
         description = entity.getDescription();
         moment = entity.getMoment();
+
     }
 
     public Long getId() {
@@ -61,4 +65,5 @@ public class ProgressProcessDTO implements Serializable {
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
+
 }

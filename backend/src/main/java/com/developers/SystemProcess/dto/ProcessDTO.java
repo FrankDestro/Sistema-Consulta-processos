@@ -1,11 +1,14 @@
 package com.developers.SystemProcess.dto;
 
 import com.developers.SystemProcess.entities.Process;
+import com.developers.SystemProcess.entities.ProgressProcess;
 import com.developers.SystemProcess.enums.StatusProcess;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ProcessDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -22,6 +25,8 @@ public class ProcessDTO implements Serializable {
     private String natureProcess;
     private StatusProcess statusProcess;
     private Instant moment;
+
+    Set<ProgressProcessDTO> Process = new HashSet<>();
 
     public ProcessDTO() {
     }
@@ -54,6 +59,7 @@ public class ProcessDTO implements Serializable {
         natureProcess = entity.getNatureProcess();
         statusProcess = entity.getStatusProcess();
         moment = entity.getMoment();
+        entity.getProgress().forEach(listprog -> this.Process.add(new ProgressProcessDTO(listprog)));
     }
 
     public Long getId() {
@@ -150,5 +156,9 @@ public class ProcessDTO implements Serializable {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public Set<ProgressProcessDTO> getProcess() {
+        return Process;
     }
 }

@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_process")
@@ -30,6 +32,12 @@ public class Process implements Serializable {
     private StatusProcess statusProcess;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
+
+    @OneToMany(mappedBy = "process")
+    private Set<ProgressProcess> Progress = new HashSet<>();
+
+    @OneToMany(mappedBy = "process")
+    private Set<Attachment> attachment = new HashSet<>();
 
     public Process() {
     }
@@ -145,18 +153,24 @@ public class Process implements Serializable {
         this.moment = moment;
     }
 
+    public Set<ProgressProcess> getProgress() {
+        return Progress;
+    }
+
+    public Set<Attachment> getAttachment() {
+        return attachment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Process process = (Process) o;
-
         return Objects.equals(id, process.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hash(id);
     }
 }
